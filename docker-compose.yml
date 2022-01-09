@@ -1,0 +1,43 @@
+version: "3.3"
+
+services:
+
+  dbsongs:
+    container_name: ${PROJECT}_dbsongs
+    hostname: ${PROJECT}_dbsongs
+    image: mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - bddata:/var/lib/mysql
+      - ./database/dump:/docker-entrypoint-initdb.d
+    networks:
+      - platform
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+  
+  songs_api:
+    container_name: ${PROJECT}_songs_api
+    hostname: ${PROJECT}_songs_api
+    build: ./songs_api
+    depends_on:
+      - dbsongs
+    volumes: 
+      - ./songs_api/songs_api:/code
+    ports:
+      - "8081:8081"
+    stdin_open: true
+    tty: true
+    networks:
+      - platform
+
+volumes:
+  bddata:
+
+networks:
+  platform:
+    name: platform

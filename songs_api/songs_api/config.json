@@ -1,0 +1,21 @@
+{
+  "settings": {
+    "project": "songs_api",
+    "env": "local",
+    "debug": true,
+    "allowed_hosts": [
+      "localhost",
+      "127.0.0.1",
+      "0.0.0.0"
+    ]
+  },
+  "db": {
+    "db_songs": {
+      "user": "admin",
+      "password": "Deurc9456!",
+      "dbname": "songs",
+      "host": "dbsongs",
+      "port": 3306
+    }
+  }
+}
