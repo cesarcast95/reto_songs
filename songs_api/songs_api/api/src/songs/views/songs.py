@@ -10,10 +10,10 @@ class Songs(APIView):
 
     def __init__(self):
         # Build paths inside the project like this: BASE_DIR / 'subdir'.
-        BASE_DIR = os.path.dirname('/code/')
+        base_dir = os.path.dirname('/code/')
 
         # Read songs.json file
-        with open(BASE_DIR + '/songs.json') as json_file:
+        with open(base_dir + '/songs.json') as json_file:
             songs_file = json.load(json_file)
         self.songs = songs_file['feed']['results']
 
@@ -26,11 +26,11 @@ class Songs(APIView):
     def post(self, request, **kwargs):
 
         # Build paths inside the project like this: BASE_DIR / 'subdir'.
-        BASE_DIR = os.path.dirname('/code/')
+        base_dir = os.path.dirname('/code/')
 
         # Read songs.json file
         data = loads(request.body.decode('utf-8'))
-        with open(BASE_DIR + '/songs.json', 'r+') as file:
+        with open(base_dir + '/songs.json', 'r+') as file:
             songs_file = json.load(file)
             songs_file['feed']['results'].append(data)
             file.seek(0)

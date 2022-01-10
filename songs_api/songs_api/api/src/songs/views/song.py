@@ -1,7 +1,7 @@
 import json
 import os
-from json import loads
 
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -31,18 +31,20 @@ class Song(APIView):
 
     def delete(self, request, song_id):
         # Build paths inside the project like this: BASE_DIR / 'subdir'.
-        BASE_DIR = os.path.dirname('/code/')
-
+        base_dir = os.path.dirname('/code/')
         # Read songs.json file
-        data = loads(request.body.decode('utf-8'))
-        with open(BASE_DIR + '/songs.json', 'r+') as file:
+        with open(base_dir + '/songs.json', 'r+') as file:
             songs_file = json.load(file)
             songs = songs_file['feed']['results']
 
-        for i in range(len(songs)):
-            if songs[i]['id'] == str(song_id):
-                songs.pop(i)
-                break
+            for son in songs:
+                if str(song_id) in son:
+                    print("HOLA SONG", son)
+                    songs.pop(son)
+
+                json.dump(songs_file, file, indent=4)
+
+        output = {'message': 'ok'}
+        code = status.HTTP_200_OK
         # Add a song in a json file
-        output = data
-        return Response(output)
+        return Response(output, code)
