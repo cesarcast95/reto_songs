@@ -1,6 +1,6 @@
 # Song Test
 
-_Acá va un párrafo que describa lo que es el proyecto_
+_This project manage the top 100 of the most reproduced songs actually_
 
 ## Starting 🚀
 
@@ -26,7 +26,7 @@ docker-compose ps
 
 ## Builded with 🛠️
 
-_Menciona las herramientas que utilizaste para crear tu proyecto_
+_Tools used_
 
 * [Django](https://www.djangoproject.com/) - Framework
 * [Django REST framework](https://www.django-rest-framework.org/) - toolkit for building Web APIs
@@ -34,7 +34,6 @@ _Menciona las herramientas que utilizaste para crear tu proyecto_
 
 ## Endpoints 📦
 
-_Agrega notas adicionales sobre como hacer deploy_
 
 ```
 # GET songs
